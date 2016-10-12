@@ -2,5 +2,8 @@ Rails.application.routes.draw do
   resources :projects
   resources :teams
   resources :people
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # Root to projects#index so that the user sees the list of
+  # what everyone is working on for a given day
+  root 'projects#index'
 end

@@ -1,35 +1,51 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Projects</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Location</th>
-      <th>Time</th>
-      <th>Discipline</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%= project.type %></td>
-        <td><%= project.location %></td>
-        <td><%= project.time %></td>
-        <td><%= project.discipline %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="container col-md-10 col-md-offset-1">
+    <% if alert %>
+        <div class="alert alert-warning"><%= alert %></div>
     <% end %>
-  </tbody>
-</table>
+    <% if notice %>
+        <div class="alert alert-success"><%= notice %></div>
+    <% end %>
 
-<br>
+    <h1 class="center">Projects</h1>
+    <div class="row">
+        <table class="table table-condensed col-md-8" id="project-index-table">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Location</th>
+                <th>Time</th>
+                <th>Discipline</th>
+                <th colspan="3"></th>
+                </tr>
+            </thead>
 
-<%= link_to 'New Project', new_project_path %>
+            <tbody>
+                <% @projects.each do |project| %>
+                <tr>
+                    <td><%= project.name %></td>
+                    <td><%= project.project_type %></td>
+                    <td><%= project.location %></td>
+                    <td><%= project.time %></td>
+                    <td><%= project.discipline %></td>
+                    <td><%= link_to 'Show', project, class: 'btn btn-sm btn-primary' %></td>
+                    <td>
+                        <%= link_to 'Edit',  edit_project_path(project), 
+                                class: 'btn btn-sm btn-primary' %>
+                    </td>
+                    <td>
+                        <%= link_to 'Destroy', project, method: :delete, 
+                                data: { confirm: 'Are you sure?' },
+                                class: 'btn btn-sm btn-danger' %>
+                    </td> 
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="row">
+        <%= link_to 'New Project', new_project_path,
+                class: 'btn btn-default col-md-2 col-md-offset-5' %>
+    </div>
+</div>
